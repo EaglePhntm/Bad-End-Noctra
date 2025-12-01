@@ -190,6 +190,9 @@
 
 /datum/job/New()
 	. = ..()
+	// Clamp PQ requirements so roles never need above 0 PQ.
+	if(min_pq > 0)
+		min_pq = 0
 	if(give_bank_account)
 		for(var/X in GLOB.peasant_positions)
 			peopleiknow += X
