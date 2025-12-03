@@ -236,6 +236,8 @@
 	else
 		dat += "<tr><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_PANTS]'>[(wear_pants && !(wear_pants.item_flags & ABSTRACT)) ? wear_pants : "<font color=grey>Trousers</font>"]</A></td></tr>"
 
+	dat += "<tr><td><A href='byond://?src=[REF(src)];legwearthing=1'>[(legwear_socks && !(legwear_socks.item_flags & ABSTRACT)) ? legwear_socks : "<font color=grey>Legwear</font>"]</A></td></tr>"
+
 	if(obscured & ITEM_SLOT_SHOES)
 		dat += "<tr><td><font color=grey>Obscured</font></td></tr>"
 	else
