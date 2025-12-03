@@ -177,8 +177,6 @@
 	desc = "A towering helm sized for a giant skull."
 	icon = 'icons/roguetown/clothing/onmob/32x64/ogre_onmob.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x64/ogre_onmob.dmi'
-	worn_x_dimension = 32
-	worn_y_dimension = 64
 	icon_state = "merchelmet"
 	item_state = "merchelmet"
 	armor = ARMOR_PLATE_GOOD

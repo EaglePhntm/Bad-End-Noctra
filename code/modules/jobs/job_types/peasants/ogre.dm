@@ -1,13 +1,19 @@
+/datum/job/advclass/wretch/ogre
+	abstract_type = /datum/job/advclass/wretch/ogre
+	category_tags = list(CTAG_WRETCH)
+	allowed_races = list(SPEC_ID_OGRE)
+	blacklisted_species = list()
+	total_positions = 1
+	spawn_positions = 1
+	department_flag = OUTSIDERS
+	faction = FACTION_NEUTRAL
+	bypass_lastclass = TRUE
+
 /datum/job/advclass/wretch/ogre/dumdum
 	title = "Dum Dum"
 	tutorial = "You left Gronn because you could not find enough to eat there, and mean men kept firing arrows at you! Now you are here, and you are hungry. Time to find food!"
 	display_order = JDO_OGRE
-	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK | JOB_NEW_PLAYER_JOINABLE)
-	department_flag = OUTSIDERS
-	faction = FACTION_NEUTRAL
-	total_positions = 1
-	spawn_positions = 1
-	bypass_lastclass = TRUE
+	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK)
 	allowed_races = list(SPEC_ID_OGRE)
 	allowed_sexes = list(MALE, FEMALE)
 
@@ -43,12 +49,7 @@
 	title = "Avatar of Graggar"
 	tutorial = "A hulking avatar of Graggar. Smash, chop, or crush anything in your way."
 	display_order = JDO_OGRE + 0.1
-	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK | JOB_NEW_PLAYER_JOINABLE)
-	department_flag = OUTSIDERS
-	faction = FACTION_NEUTRAL
-	total_positions = 1
-	spawn_positions = 1
-	bypass_lastclass = TRUE
+	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK)
 	allowed_races = list(SPEC_ID_OGRE)
 	allowed_sexes = list(MALE, FEMALE)
 
@@ -81,7 +82,10 @@
 		r_hand = weapons[weaponchoice]
 	if(H)
 		ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STRONGBITE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 		H.change_stat(STATKEY_STR, 4)
 		H.change_stat(STATKEY_CON, 5)
 		H.change_stat(STATKEY_END, 4)
@@ -98,12 +102,7 @@
 	title = "Ogre Mercenary"
 	tutorial = "A wandering sell-sword from Gronn. Get paid, get food."
 	display_order = JDO_OGRE + 0.2
-	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK | JOB_NEW_PLAYER_JOINABLE)
-	department_flag = OUTSIDERS
-	faction = FACTION_NEUTRAL
-	total_positions = 1
-	spawn_positions = 1
-	bypass_lastclass = TRUE
+	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK)
 	allowed_races = list(SPEC_ID_OGRE)
 	allowed_sexes = list(MALE, FEMALE)
 
@@ -135,6 +134,8 @@
 	if(H)
 		ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STRONGBITE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 		H.change_stat(STATKEY_STR, 4)
 		H.change_stat(STATKEY_CON, 3)
 		H.change_stat(STATKEY_END, 3)
@@ -150,12 +151,7 @@
 	title = "Ogre Warlord"
 	tutorial = "A war horn calls you to lead and crush."
 	display_order = JDO_OGRE + 0.3
-	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK | JOB_NEW_PLAYER_JOINABLE)
-	department_flag = OUTSIDERS
-	faction = FACTION_NEUTRAL
-	total_positions = 1
-	spawn_positions = 1
-	bypass_lastclass = TRUE
+	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK)
 	allowed_races = list(SPEC_ID_OGRE)
 	allowed_sexes = list(MALE, FEMALE)
 
@@ -187,6 +183,8 @@
 	if(H)
 		ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STRONGBITE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 		H.change_stat(STATKEY_STR, 3)
 		H.change_stat(STATKEY_CON, 2)
 		H.change_stat(STATKEY_END, 2)
@@ -201,12 +199,7 @@
 	title = "Cook-Cook"
 	tutorial = "A massive cook with an even bigger appetite."
 	display_order = JDO_OGRE + 0.4
-	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK | JOB_NEW_PLAYER_JOINABLE)
-	department_flag = OUTSIDERS
-	faction = FACTION_NEUTRAL
-	total_positions = 1
-	spawn_positions = 1
-	bypass_lastclass = TRUE
+	job_flags = (JOB_ANNOUNCE_ARRIVAL | JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK)
 	allowed_races = list(SPEC_ID_OGRE)
 	allowed_sexes = list(MALE, FEMALE)
 
@@ -232,6 +225,8 @@
 		/obj/item/reagent_containers/glass/bottle/waterskin = 1
 	)
 	if(H)
+		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 		H.change_stat(STATKEY_STR, 2)
 		H.change_stat(STATKEY_CON, 2)
 		H.change_stat(STATKEY_END, 1)
