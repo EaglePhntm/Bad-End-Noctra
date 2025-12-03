@@ -65,6 +65,7 @@
 	gloves = /obj/item/clothing/gloves/plate/ogre
 	wrists = /obj/item/clothing/wrists/bracers/ogre
 	neck = /obj/item/clothing/neck/gorget/ogre
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/graggar/ogre
 	belt = /obj/item/storage/belt/leather/ogre
 	cloak = /obj/item/clothing/cloak/apron/ogre
 	backl = /obj/item/storage/backpack/satchel
@@ -119,6 +120,7 @@
 	gloves = /obj/item/clothing/gloves/plate/ogre
 	wrists = /obj/item/clothing/wrists/bracers/ogre
 	neck = /obj/item/clothing/neck/gorget/ogre
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/ogre
 	belt = /obj/item/storage/belt/leather/ogre
 	backl = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/weapon/mace/cudgel/ogre = 1, /obj/item/rope/chain = 1, /obj/item/flashlight/flare/torch/lantern = 1, /obj/item/reagent_containers/glass/bottle/waterskin = 1)
@@ -170,6 +172,7 @@
 	gloves = /obj/item/clothing/gloves/plate/ogre
 	wrists = /obj/item/clothing/wrists/bracers/ogre
 	neck = /obj/item/clothing/neck/gorget/ogre
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/graggar/ogre
 	belt = /obj/item/storage/belt/leather/ogre
 	backl = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/weapon/mace/cudgel/ogre = 1, /obj/item/rope/chain = 1, /obj/item/flashlight/flare/torch/lantern = 1, /obj/item/reagent_containers/glass/bottle/waterskin = 1)
@@ -217,6 +220,7 @@
 	pants = /obj/item/clothing/pants/tights/ogre
 	shoes = /obj/item/clothing/shoes/boots/ogre
 	gloves = /obj/item/clothing/gloves/leather/ogre
+	head = /obj/item/clothing/head/cookhat/ogre
 	belt = /obj/item/storage/belt/leather/ogre
 	beltl = /obj/item/weapon/knife/cleaver/ogre
 	beltr = /obj/item/cooking/pan

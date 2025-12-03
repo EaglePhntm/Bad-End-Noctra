@@ -13,6 +13,7 @@
 	default_features = MANDATORY_FEATURE_LIST
 	allowed_pronouns = PRONOUNS_LIST
 	use_skintones = TRUE
+	swap_female_clothes = TRUE
 	possible_ages = ALL_AGES_LIST
 	changesource_flags = WABBAJACK
 
