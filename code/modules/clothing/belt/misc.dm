@@ -115,6 +115,21 @@
 		qdel(src)
 		user.put_in_active_hand(new salvage_result(get_turf(user)))
 
+/obj/item/storage/belt/leather/rope/dark
+	color = "#505050"
+
+/obj/item/storage/belt/leather/suspenders
+	name = "suspenders"
+	desc = "A pair of suspenders which go over the shoulders. Used for keeping one's pants in place in an admittably fashionable style."
+	icon_state = "suspenders"
+	alternate_worn_layer = ARMOR_LAYER
+
+/obj/item/storage/belt/leather/cloth_belt
+	name = "cloth belt"
+	desc = "This belt has been sewn out of cloth, as opposed to tied. Which makes it superior. Obviously."
+	icon_state = "clothsash"
+	salvage_result = /obj/item/natural/cloth
+
 /obj/item/storage/belt/leather/cloth
 	name = "cloth sash"
 	desc = "A simple cloth sash."
