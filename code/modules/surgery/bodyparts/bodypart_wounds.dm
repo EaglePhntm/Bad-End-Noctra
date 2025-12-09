@@ -159,6 +159,11 @@
 		var/crit_attempt = try_crit(bclass, dam, user, zone_precise, silent, crit_message, reduce_crit)
 		if(crit_attempt)
 			return crit_attempt
+	if(zone_precise == BODY_ZONE_PRECISE_MOUTH && (bclass in GLOB.fracture_bclasses)) /
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.lose_teeth(dam)
+	return dynwound
 
 	return manage_dynamic_wound(bclass, dam)
 

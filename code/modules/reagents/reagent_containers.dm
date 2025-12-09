@@ -79,6 +79,51 @@
 		return
 	reagents.add_reagent(/datum/reagent/water, clamp(severity * 0.5, 1, 5))
 	COOLDOWN_START(src, weather_act_cooldown, 10 SECONDS)
+/obj/item/reagent_containers/proc/add_initial_reagents()
+	if(list_reagents)
+		reagents.add_reagent_list(list_reagents)
+
+/obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
+	return ..()
+
+/obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user, silent = FALSE)
+	if(!iscarbon(eater))
+		return FALSE
+	var/mob/living/carbon/C = eater
+	
+	var/obj/item/bodypart/head/dullahan/eaterrelay
+	if(ishuman(src))
+		var/mob/living/carbon/human = src
+		if(!human.get_bodypart_shallow(BODY_ZONE_HEAD))
+			if(isdullahan(src))
+				var/datum/species/dullahan/dullahan = human.dna.species
+				eaterrelay = dullahan.my_head
+			else
+				return FALSE
+
+	var/covered = ""
+	if(C.is_mouth_covered(head_only = 1))
+		covered = "headgear"
+	else if(C.is_mouth_covered(mask_only = 1))
+		covered = "mask"
+	if(C != user)
+		if((C.mobility_flags & MOBILITY_STAND) && eaterrelay)
+			if(get_dir(eater, user) != eater.dir)
+				to_chat(user, span_warning("I must stand in front of [C.p_them()]."))
+				return FALSE
+		else if(eaterrelay && (get_turf(eaterrelay) != get_turf(user) && !user.is_holding(eaterrelay)))
+			return FALSE
+	if(covered)
+		if(!silent)
+			var/who = (isnull(user) || eater == user) ? "my" : "[eater.p_their()]"
+			to_chat(user, span_warning("I have to remove [who] [covered] first!"))
+		return FALSE
+	if(ishuman(C))
+		var/mob/living/carbon/human/E = C
+		if(E.teeth < 12 && istype(src, /obj/item/reagent_containers/food))
+			to_chat(user, span_warning("I don't have enough teeth to chew this.."))
+			return FALSE
+	return TRUE
 
 /obj/item/reagent_containers/ex_act()
 	if(reagents)

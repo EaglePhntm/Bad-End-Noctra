@@ -60,3 +60,9 @@
 	name = "Jewel of Nyle"
 	cost = 300
 	contains = /obj/item/clothing/head/crown/nyle/consortcrown
+
+
+/datum/supply_pack/rogue/luxury/gold_teeth
+	name = "Gold Teeth x5"
+	cost = 220
+	contains = list(/obj/item/gold_tooth,/obj/item/gold_tooth,/obj/item/gold_tooth,/obj/item/gold_tooth,/obj/item/gold_tooth)
