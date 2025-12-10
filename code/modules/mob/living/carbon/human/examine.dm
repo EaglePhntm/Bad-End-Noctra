@@ -634,6 +634,12 @@
 				var/inscryption_key = LAZYACCESS(heart.inscryption_keys, maniac) // SPECIFICALLY the key that WE wrote
 				if(inscryption_key && (inscryption_key in maniac.key_nums))
 					. += span_danger("[t_He] know[p_s()] [inscryption_key], I AM SURE OF IT!")
+	//Teeth Stuff - only for humans for now
+	if(src.teeth < 32)//Only show this if they're missing teeth
+		var/missing_teeth = 32 - src.teeth
+		. += span_warning("[t_He] is missing [missing_teeth] of their teeth!")
+	if(src.gold_teeth > 0)//Only shows if they have any gold teeth
+		. += span_greentext("Their smile brings a lustrous shine to their surroundings!")
 
 	if(IsAdminGhost(user))
 		var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
