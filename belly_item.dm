@@ -8,6 +8,8 @@
 	icon_state = "bellyriding_harness"
 	worn_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
 	worn_icon_state = "bellyriding_harness"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
+	item_state = "bellyriding_harness"
 	slot_flags = ITEM_SLOT_ARMOR
 
 /obj/item/clothing/suit/bellyriding_harness/equipped(mob/user, slot, initial)

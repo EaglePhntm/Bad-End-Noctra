@@ -6,6 +6,13 @@
 	/// Last action we successfully ran, used to bias repeats that are still valid.
 	var/last_action_type
 
+	// Stored visuals for the current victim so we can restore them.
+	var/matrix/old_victim_transform
+	var/old_victim_layer
+	var/old_victim_pixel_x
+	var/old_victim_pixel_y
+	var/victim_scaled = FALSE
+
 	// Stored state so we can restore the wearer after we finish buckling.
 	var/old_can_buckle
 	var/old_buckle_requires_restraints
@@ -91,6 +98,7 @@
 	wearer.add_movespeed_modifier(MOVESPEED_ID_BELLYRIDE, multiplicative_slowdown = 0.8)
 	current_victim = victim
 	RegisterSignal(current_victim, COMSIG_PARENT_QDELETING, PROC_REF(on_victim_deleted))
+	apply_victim_scaling()
 	update_visuals()
 
 /datum/component/bellyriding/proc/try_unbuckle_victim(mob/living/carbon/human/user)
@@ -132,7 +140,6 @@
 
 	if(victim && !QDELETED(victim))
 		victim.reset_offsets("bellyride")
-		victim.layer = initial(victim.layer)
 	UnregisterSignal(victim, COMSIG_PARENT_QDELETING)
 
 /datum/component/bellyriding/proc/store_old_state(mob/living/carbon/human/victim)
@@ -143,6 +150,11 @@
 	wearer.can_buckle = TRUE
 	wearer.buckle_requires_restraints = TRUE
 	wearer.max_buckled_mobs = max(wearer.max_buckled_mobs + 1, 1)
+	if(victim)
+		old_victim_transform = matrix(victim.transform)
+		old_victim_layer = victim.layer
+		old_victim_pixel_x = victim.pixel_x
+		old_victim_pixel_y = victim.pixel_y
 
 /datum/component/bellyriding/proc/restore_old_state(mob/living/carbon/human/victim)
 	var/mob/living/carbon/human/wearer = parent
@@ -150,6 +162,20 @@
 	wearer.buckle_requires_restraints = old_buckle_requires_restraints
 	if(old_max_buckled_mobs)
 		wearer.max_buckled_mobs = old_max_buckled_mobs
+	if(victim)
+		if(old_victim_transform)
+			victim.transform = old_victim_transform
+		if(!isnull(old_victim_layer))
+			victim.layer = old_victim_layer
+		if(!isnull(old_victim_pixel_x))
+			victim.pixel_x = old_victim_pixel_x
+		if(!isnull(old_victim_pixel_y))
+			victim.pixel_y = old_victim_pixel_y
+	old_victim_transform = null
+	old_victim_layer = null
+	old_victim_pixel_x = null
+	old_victim_pixel_y = null
+	victim_scaled = FALSE
 
 /datum/component/bellyriding/proc/update_visuals()
 	if(!current_victim)
@@ -163,16 +189,19 @@
 	var/y_offset = 4
 	switch(wearer.dir)
 		if(EAST)
-			x_offset = 6
-		if(WEST)
-			x_offset = -6
-		if(NORTH)
-			y_offset = 6
-		if(SOUTH)
+			x_offset = 10
 			y_offset = 2
+		if(WEST)
+			x_offset = -10
+			y_offset = 2
+		if(NORTH)
+			y_offset = 10
+		if(SOUTH)
+			y_offset = -6
 
 	current_victim.set_mob_offsets("bellyride", _x = x_offset, _y = y_offset)
-	current_victim.layer = wearer.layer + 0.001
+	var/layer_offset = (wearer.dir == SOUTH) ? 0.02 : 0.002
+	current_victim.layer = wearer.layer + layer_offset
 
 /datum/component/bellyriding/proc/maybe_do_interaction()
 	var/mob/living/carbon/human/wearer = parent
@@ -228,6 +257,18 @@
 		session = new /datum/sex_session(parent, current_victim)
 		LAZYADD(GLOB.sex_sessions, session)
 	return session
+
+/datum/component/bellyriding/proc/apply_victim_scaling()
+	if(!current_victim || victim_scaled)
+		return
+
+	if(!old_victim_transform)
+		old_victim_transform = matrix(current_victim.transform)
+
+	var/matrix/scaled_transform = matrix(old_victim_transform)
+	scaled_transform.Scale(0.9)
+	current_victim.transform = scaled_transform
+	victim_scaled = TRUE
 
 /datum/component/bellyriding/proc/on_victim_deleted(datum/_source)
 	SIGNAL_HANDLER

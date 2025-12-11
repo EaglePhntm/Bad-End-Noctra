@@ -4,8 +4,18 @@
 	continous = FALSE
 	stamina_cost = 0.2
 
-/datum/sex_action/bellyriding/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/bellyriding/proc/has_harness_link(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	var/datum/component/bellyriding/user_comp = user.GetComponent(/datum/component/bellyriding)
+	if(user_comp?.current_victim == target)
+		return TRUE
+	var/datum/component/bellyriding/target_comp = target.GetComponent(/datum/component/bellyriding)
+	if(target_comp?.current_victim == user)
+		return TRUE
 	return FALSE
+
+/datum/sex_action/bellyriding/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	// Only show if either participant is currently using a bellyriding harness with the other.
+	return has_harness_link(user, target)
 
 /datum/sex_action/bellyriding/proc/get_session(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return get_sex_session(user, target) || get_sex_session(target, user)
@@ -17,11 +27,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!has_harness_link(user, target))
+		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS))
-		return FALSE
-	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN, TRUE))
-		return FALSE
-	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	return TRUE
 
@@ -49,11 +57,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!has_harness_link(user, target))
+		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS) || !target.getorganslot(ORGAN_SLOT_PENIS))
-		return FALSE
-	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN, TRUE))
-		return FALSE
-	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	return TRUE
 
@@ -82,11 +88,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!has_harness_link(user, target))
+		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS) || !target.getorganslot(ORGAN_SLOT_ANUS))
-		return FALSE
-	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN, TRUE))
-		return FALSE
-	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	if(check_sex_lock(user, ORGAN_SLOT_PENIS) || check_sex_lock(target, ORGAN_SLOT_ANUS))
 		return FALSE
@@ -117,11 +121,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!has_harness_link(user, target))
+		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS) || !target.getorganslot(ORGAN_SLOT_VAGINA))
-		return FALSE
-	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN, TRUE))
-		return FALSE
-	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	if(check_sex_lock(user, ORGAN_SLOT_PENIS) || check_sex_lock(target, ORGAN_SLOT_VAGINA))
 		return FALSE
