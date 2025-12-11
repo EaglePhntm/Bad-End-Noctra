@@ -25,6 +25,7 @@
 	neck = /obj/item/clothing/neck/leathercollar
 	backl = /obj/item/storage/backpack/satchel
 	beltl = /obj/item/storage/belt/pouch/coins/poor
+	beltr = /obj/item/key/manor
 
 	if(H.mind)
 		H.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
