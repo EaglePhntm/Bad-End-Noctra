@@ -9,14 +9,23 @@
 	/// Cached embedded object list for the current tick.
 	var/list/cached_embedded_objects
 	var/last_embedded_cache_time
+	/// Cached bleed rate for the current tick.
+	var/cached_bleed_rate
+	var/last_bleed_rate_cache_time
 
 /mob/living/proc/invalidate_wound_cache()
 	cached_wounds = null
 	last_wounds_cache_time = null
+	invalidate_bleed_rate_cache()
 
 /mob/living/proc/invalidate_embedded_cache()
 	cached_embedded_objects = null
 	last_embedded_cache_time = null
+	invalidate_bleed_rate_cache()
+
+/mob/living/proc/invalidate_bleed_rate_cache()
+	cached_bleed_rate = null
+	last_bleed_rate_cache_time = null
 
 /// Returns every embedded object we have, simple or not
 /mob/living/proc/get_embedded_objects()
