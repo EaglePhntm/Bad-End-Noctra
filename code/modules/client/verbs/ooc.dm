@@ -285,8 +285,9 @@ GLOBAL_LIST_INIT(oocpronouns_required, list(
 			return lowertext(copytext(jd, pos+9, search))
 
 /client/verb/fix_chat()
-	set name = "Fix Chat"
-	set category = "OOC"
+	set name = "{Fix Chat}"
+	set category = "Options"
+	set hidden = FALSE
 	if (!chatOutput || !istype(chatOutput))
 		var/action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Wot?", "Recreate Chat Output data", "Cancel")
 		if (action != "Recreate Chat Output data")
